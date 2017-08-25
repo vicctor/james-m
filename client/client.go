@@ -1,6 +1,7 @@
 package client
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -8,7 +9,6 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"bytes"
 )
 
 type JamesClient struct {
@@ -33,7 +33,8 @@ func (jamesClient *JamesClient) AddInformationPoint(
 	methodReference *MethodReference,
 	script []byte,
 	includeAbstractClass bool,
-	includeNonAbstractClassDescendants bool) {
+	includeNonAbstractClassDescendants bool,
+	sampleRate int) {
 
 	noCrScript := strings.Replace(string(script), "\r", "", -1)
 	scriptLines := strings.Split(noCrScript, "\n")
@@ -47,6 +48,7 @@ func (jamesClient *JamesClient) AddInformationPoint(
 		Script:                             filteredLines,
 		IncludeAbstractClass:               includeAbstractClass,
 		IncludeNonAbstractClassDescendants: includeNonAbstractClassDescendants,
+		SampleRate:                         sampleRate,
 	}
 
 	url := fmt.Sprintf("http://%s:%d/v1/information-point", jamesClient.Host, jamesClient.Port)

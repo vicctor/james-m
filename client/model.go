@@ -1,8 +1,8 @@
 package client
 
 import (
-	"strings"
 	"log"
+	"strings"
 )
 
 type Queue struct {
@@ -18,6 +18,7 @@ type InformationPoint struct {
 	Script                             []string `json:"script"`
 	IncludeAbstractClass               bool     `json:"includeAbstractClass"`
 	IncludeNonAbstractClassDescendants bool     `json:"includeNonAbstractClassDescendants"`
+	SampleRate                         int      `json:"sampleRate"`
 }
 
 type MethodReference struct {
@@ -32,7 +33,7 @@ func CreateMethodReference(encodedMethodReference string) (methodReference *Meth
 	}
 
 	methodReference = &MethodReference{
-		ClassName: parts[0],
+		ClassName:  parts[0],
 		MethodName: parts[1],
 	}
 	return
