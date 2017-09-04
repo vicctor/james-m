@@ -8,8 +8,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var includeAbstractClass bool
-var includeNonAbstractClassDescendants bool
 var sampleRate int
 
 var ipCmd = &cobra.Command{
@@ -48,10 +46,6 @@ func init() {
 	ipCmd.AddCommand(ipRemoveCmd)
 	ipCmd.AddCommand(ipShowCmd)
 
-	ipAddCmd.Flags().BoolVar(&includeAbstractClass, "include-abstract-class",
-		false, "include abstract class")
-	ipAddCmd.Flags().BoolVar(&includeNonAbstractClassDescendants, "include-non-abstract-class-descendants",
-		false, "include non-abstract class descendants")
 	ipAddCmd.Flags().IntVar(&sampleRate, "sample-rate",
 		100, "sample rate at which information point's script will be executed")
 }
@@ -67,7 +61,7 @@ func ipAddCmdHandler(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	jamesClient.AddInformationPoint(methodReference, script, includeAbstractClass, includeNonAbstractClassDescendants, sampleRate)
+	jamesClient.AddInformationPoint(methodReference, script, sampleRate)
 }
 
 func ipRemoveCmdHandler(cmd *cobra.Command, args []string) {

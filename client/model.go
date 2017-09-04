@@ -13,12 +13,10 @@ type Queue struct {
 }
 
 type InformationPoint struct {
-	ClassName                          string   `json:"className"`
-	MethodName                         string   `json:"methodName"`
-	Script                             []string `json:"script"`
-	IncludeAbstractClass               bool     `json:"includeAbstractClass"`
-	IncludeNonAbstractClassDescendants bool     `json:"includeNonAbstractClassDescendants"`
-	SampleRate                         int      `json:"sampleRate"`
+	ClassName  string   `json:"className"`
+	MethodName string   `json:"methodName"`
+	Script     []string `json:"script"`
+	SampleRate int      `json:"sampleRate"`
 }
 
 type MethodReference struct {

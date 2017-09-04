@@ -32,8 +32,6 @@ func (jamesClient *JamesClient) GetInformationPoint(methodReference *MethodRefer
 func (jamesClient *JamesClient) AddInformationPoint(
 	methodReference *MethodReference,
 	script []byte,
-	includeAbstractClass bool,
-	includeNonAbstractClassDescendants bool,
 	sampleRate int) {
 
 	noCrScript := strings.Replace(string(script), "\r", "", -1)
@@ -43,12 +41,10 @@ func (jamesClient *JamesClient) AddInformationPoint(
 	})
 
 	informationPoint := &InformationPoint{
-		ClassName:                          methodReference.ClassName,
-		MethodName:                         methodReference.MethodName,
-		Script:                             filteredLines,
-		IncludeAbstractClass:               includeAbstractClass,
-		IncludeNonAbstractClassDescendants: includeNonAbstractClassDescendants,
-		SampleRate:                         sampleRate,
+		ClassName:  methodReference.ClassName,
+		MethodName: methodReference.MethodName,
+		Script:     filteredLines,
+		SampleRate: sampleRate,
 	}
 
 	url := fmt.Sprintf("http://%s:%d/v1/information-point", jamesClient.Host, jamesClient.Port)
