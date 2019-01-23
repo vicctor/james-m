@@ -1,3 +1,3 @@
 #!/bin/bash
-
-go build main.go
+mkdir -p bin
+go build -o bin/james-m main.go
