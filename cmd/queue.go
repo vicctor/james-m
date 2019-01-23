@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/pdebicki/james-m/client"
+	"../client"
 	"github.com/spf13/cobra"
 )
 
